@@ -1,8 +1,8 @@
 CXX = g++
-CXXFLAGS = -Wall -Wextra -Werror
-INCLUDES = -lncurses
+CXXFLAGS = -Wall -Wextra -Werror -Iinclude
+INCLUDES = -lncurses 
 
-TARGET = build/program
+TARGET = program
 
 SRC = $(wildcard src/*.cpp)
 OBJ = $(SRC:src/%.cpp=build/%.o)
