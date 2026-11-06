@@ -1,20 +1,23 @@
 CXX = g++
-CXXFLAGS = -Wall -Wextra -Werror
-INCLUDES = -lncurses
+CXXFLAGS = -Wall -Wextra -Werror -Iinclude
+INCLUDES = -lncurses 
 
-TARGET = program
+TARGET = build/tetris
 
-SRC = $(wildcard *.cpp)
-OBJ = $(SRC:.cpp=.o)
+SRC = $(wildcard src/*.cpp)
+OBJ = $(SRC:src/%.cpp=build/%.o)
 
-all : $(TARGET)
+all : build $(TARGET)
+
+build:
+	mkdir -p build
 
 $(TARGET) : $(OBJ)
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJ) $(INCLUDES)
 
 
-%.o : %.c
+build/%.o : src/%.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm -rf $(BUILD_DIR)
